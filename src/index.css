@@ -23,9 +23,13 @@ a {
 .search-form {
   background-color: white;
   border-radius: 5px!important;
+  padding: 13px 12px 13px 12px;
 }
-.w-40{
-  width: 40%;
+.select-form {
+  background-color: white;
+}
+.w-45{
+  width: 48%!important;
 }
 .pt-8 {
   padding-top: 140px;

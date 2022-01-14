@@ -17,7 +17,7 @@ const Category = (props) => {
     const fetchData = async () => {
       db.collection("movies").get()
         .then(parseSnapshot(movies => {
-          console.log(movies)
+          // console.log(movies)
           setMovies(movies)
         }))
     }

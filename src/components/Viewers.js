@@ -1,9 +1,14 @@
 import styled from "styled-components";
 import { Link, useHistory } from "react-router-dom";
-
+import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import InputUnstyled from '@mui/base/InputUnstyled';
+
 const Viewers = (props) => {
   let history = useHistory();
   const [title, setTitle] = useState("");
@@ -41,6 +46,7 @@ const Viewers = (props) => {
           </video>
         </Link>
       </Wrap> */}
+      <div style={{width:"30%"}}></div>
       <Wrap>
         <Link to={`/category/star-wars`}>
           <img src="/images/viewers-starwars.png" alt="" />
@@ -49,11 +55,26 @@ const Viewers = (props) => {
           </video>
         </Link>
       </Wrap>
-      <div style={{width:"800px"}}>
-        <TextField fullWidth label="Title" id="title" className="search-form"  value={title} onChange={e => setTitle(e.target.value)} />
-        <TextField fullWidth label="Type" id="type" className="search-form mt-2" value={type} onChange={e => setType(e.target.value)} />
-        <TextField fullWidth label="From [year]" id="yearFrom" className="search-form mt-2 w-50 mr-3" value={yearFrom} onChange={e => setYearFrom(e.target.value)} />
-        <TextField fullWidth label="To [year]" id="yearTo" className="search-form mt-2 w-50 ml-3" value={yearTo} onChange={e => setYearTo(e.target.value)} />
+      <div style={{width:"200%"}}>
+        <input  id="title" placeholder="Title" className="form-control search-form mt-3 w-100 ml-3"  value={title} onChange={e => setTitle(e.target.value)} />
+        <FormControl fullWidth className="mt-3">
+          <Select
+            labelId="type"
+            id="type"
+            value={type}
+            label="Type"
+            onChange={e => setType(e.target.value)}
+            className="select-form"
+          >
+            <MenuItem value={`new`}>New</MenuItem>
+            <MenuItem value={20}>Twenty</MenuItem>
+            <MenuItem value={30}>Thirty</MenuItem>
+          </Select>
+        </FormControl>
+        <div className="d-flex justify-content-between">
+          <input  id="yearFrom" placeholder="From [Year]" className="form-control search-form mt-3 w-45 mr-3" value={yearFrom} onChange={e => setYearFrom(e.target.value)} />
+          <input  id="yearTo" placeholder="To [Year]" className="form-control search-form mt-3 w-45 ml-3" value={yearTo} onChange={e => setYearTo(e.target.value)} />
+        </div>
         <Button onClick={Search} variant="contained" className="mt-3 py-3" fullWidth>Search</Button>
       </div>
     </Container>

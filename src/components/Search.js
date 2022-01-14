@@ -9,7 +9,7 @@ import { parseSnapshot } from "../helpers";
 import { DataGrid } from '@mui/x-data-grid';
 
 const columns = [
-  { field: 'id', headerName: '#', width: 150 },
+  { field: 'num', headerName: '#', width: 150 },
   {
     field: 'title',
     headerName: 'Title',
@@ -30,6 +30,8 @@ const columns = [
   },
 ];
 
+const data = [];
+
 const Search = (props) => {
 
   const { category } = useParams();
@@ -44,8 +46,14 @@ const Search = (props) => {
             return item.title.indexOf(title) >= 0 && item.type.indexOf(type) >= 0 && yearFrom <= item.subTitle.slice(0, 3) && item.subTitle.slice(0, 3) <= yearTo
           }
           );
-          console.log(filterData);
-          setMovies(filterData)
+          
+          // filterData.map((item, index, array) => (
+          //   item.push({idNum:index + 1})
+          // ))
+          let _filterData = filterData.map((item, index) => {
+            return { ...item, num: index+1}
+          })
+          setMovies(_filterData)
         }))
     }
     fetchData()
@@ -54,7 +62,7 @@ const Search = (props) => {
 
   return (
     <div>
-      <div className="px-3 pb-3 text-black pt-8 search-title">Search Result</div>
+      <div className="px-3 pb-3 pt-8 search-title">Search Result</div>
       <div className="d-flex">
         {movies.map(item => (
           <div className="px-3"><img className="border-3 shadow-search" src={item.cardImg} style={{width:"300px"}}/></div>
@@ -63,7 +71,7 @@ const Search = (props) => {
         <DataGrid
           rows={movies}
           columns={columns}
-          pageSize={5}
+          pageSize={3}
           rowsPerPageOptions={[5]}
           className="text-center"
         />
